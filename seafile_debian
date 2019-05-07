@@ -45,6 +45,7 @@ SEAFILE_SERVER_PROFESSIONAL=enabled
 fi
 
 # Vars
+VERSION_NUMBER=$1
 SERVER_NAME=$(hostname -s | cut -c -16)
 while test "${#SERVER_NAME}" -lt 2; do SERVER_NAME="${SERVER_NAME}_"; done
 HOSTNAME=$(hostname -f)
@@ -718,7 +719,7 @@ if [ ${SEAFILE_SERVER_PROFESSIONAL} = "enabled" ]
     if [ $(getconf LONG_BIT) = "64" ]
       then
 
-       wget $(wget "https://www.seafile.com/en/download/" -O- | grep -o https://bintray.com/artifact/download/seafile-org/seafile/seafile-server_.*x86-64.tar.gz | head -n1) -O seafile-server_latest_x86-64.tar.gz
+       wget https://download.seadrive.org/seafile-server_${VERSION_NUMBER}_x86-64.tar.gz -O seafile-server_latest_x86-64.tar.gz
        tountar="seafile-server_latest_x86-64.tar.gz"
     else
        curl -OL https://download.seafile.de/seafile-server_latest_${ARCH}.tar.gz
